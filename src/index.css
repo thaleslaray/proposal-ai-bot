@@ -1,0 +1,516 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Brutalist Design System - Champions Update Style */
+    --background: 0 0% 95%;
+    --foreground: 0 0% 0%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 0%;
+
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 16 100% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 85% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 0 0% 0%;
+    --input: 0 0% 0%;
+    --ring: 16 100% 55%;
+
+    --radius: 0.125rem;
+
+    /* Brutalist specific tokens */
+    --border-thick: 4px;
+    --shadow-brutal: 8px 8px 0 0 hsl(0 0% 0%);
+    --shadow-brutal-hover: 12px 12px 0 0 hsl(0 0% 0%);
+    
+    /* Sidebar specific tokens (brutalist style) */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 0%;
+    --sidebar-primary: 0 0% 0%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 16 100% 55%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 0%;
+    --sidebar-ring: 16 100% 55%;
+    
+    /* Decorative elements */
+    --decorative: 0 0% 85%;
+    
+    /* Extended color palette */
+    --color-purple: 260 75% 70%;
+    --color-indigo: 243 75% 59%;
+    --color-warning: 45 100% 51%;
+    --color-info: 199 89% 48%;
+  }
+
+  .dark {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 16 100% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 85% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 0 0% 100%;
+    --input: 0 0% 100%;
+    --ring: 16 100% 55%;
+
+    /* Sidebar dark mode */
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 16 100% 55%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 100%;
+    --sidebar-ring: 16 100% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-bold;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+  
+  .font-display {
+    font-family: 'Bebas Neue', 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-black tracking-tight;
+  }
+
+  /* Suporte a safe-area (notch, home indicator) */
+  .safe-area-padding {
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-bottom: max(3rem, env(safe-area-inset-bottom));
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  
+  /* Melhorar scroll em iOS */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Touch manipulation para todos os botões e links */
+  button, a, [role="button"] {
+    touch-action: manipulation;
+  }
+
+  /* Custom scrollbar styles */
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 4px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 4px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.8);
+  }
+  
+  /* Breakpoint customizado para telas muito pequenas */
+  @media (min-width: 375px) {
+    .xs\:block {
+      display: block;
+    }
+  }
+}
+
+@layer utilities {
+  .border-brutal {
+    border-width: 4px;
+    border-color: hsl(var(--border));
+  }
+
+  .shadow-brutal {
+    box-shadow: 4px 4px 0 0 hsl(var(--foreground));
+  }
+
+  .shadow-brutal-hover {
+    box-shadow: 6px 6px 0 0 hsl(var(--foreground));
+  }
+
+  .transition-brutal {
+    transition: all 0.15s cubic-bezier(0.4, 0, 1, 1);
+  }
+
+  .shadow-brutal-lg {
+    box-shadow: 12px 12px 0 0 hsl(var(--foreground));
+  }
+
+  .border-3 {
+    border-width: 3px;
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Touch pan for horizontal scroll */
+  .touch-pan-x {
+    touch-action: pan-x;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+  }
+
+  .shake {
+    animation: shake 0.3s ease-in-out;
+  }
+
+  /* ============ BRUTALIST DESIGN TOKENS ============ */
+  
+  .border-brutal-4 {
+    @apply border-4 border-border;
+  }
+  
+  .shadow-brutal-lg {
+    box-shadow: 6px 6px 0px 0px hsl(var(--border) / 0.3);
+  }
+  
+  .shadow-brutal-xl {
+    box-shadow: 8px 8px 0px 0px hsl(var(--border) / 0.4);
+  }
+  
+  .text-brutal {
+    @apply font-black tracking-tight;
+  }
+  
+  /* Shake mais intenso para alertas */
+  @keyframes shake-hard {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px) rotate(-2deg); }
+    75% { transform: translateX(8px) rotate(2deg); }
+  }
+  
+  .shake-hard {
+    animation: shake-hard 0.5s infinite;
+  }
+  
+  /* Pulse para badges importantes */
+  @keyframes pulse-scale {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  
+.pulse-scale {
+  animation: pulse-scale 2s infinite;
+}
+
+/* ============ BRUTALIST PROJECTION STYLES ============ */
+
+.font-mono-brutal {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-weight: 900;
+}
+
+.border-brutal-6 {
+  @apply border-[6px] border-border;
+}
+
+.border-brutal-8 {
+  @apply border-[8px] border-border;
+}
+
+.shadow-brutal-projection {
+  box-shadow: 12px 12px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.shadow-brutal-projection-white {
+  box-shadow: 12px 12px 0px 0px rgba(255, 255, 255, 1);
+}
+
+.shadow-brutal-projection-xl {
+  box-shadow: 16px 16px 0px 0px rgba(0, 0, 0, 1);
+}
+
+@keyframes shake-brutal {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(-12px) rotate(-3deg); }
+  75% { transform: translateX(12px) rotate(3deg); }
+}
+
+.shake-brutal {
+  animation: shake-brutal 0.5s infinite;
+}
+
+@keyframes pulse-brutal {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.1); 
+    opacity: 0.7;
+  }
+}
+
+  .pulse-brutal {
+  animation: pulse-brutal 1s infinite;
+}
+
+/* ============ ADDITIONAL BRUTALIST UTILITIES ============ */
+
+/* Border variations */
+.border-brutal-thick {
+  border-width: 6px;
+  border-color: hsl(var(--border));
+}
+
+.border-brutal-thin {
+  border-width: 2px;
+  border-color: hsl(var(--border));
+}
+
+/* Shadow variations */
+.shadow-brutal-sm {
+  box-shadow: 4px 4px 0 0 hsl(var(--foreground));
+}
+
+.shadow-brutal-accent {
+  box-shadow: 6px 6px 0 0 hsl(var(--accent));
+}
+
+.shadow-brutal-purple {
+  box-shadow: 6px 6px 0 0 hsl(var(--color-purple));
+}
+
+/* Hover state with transition */
+.shadow-brutal-hover-transition:hover {
+  box-shadow: 4px 4px 0 0 hsl(var(--foreground));
+  transform: translate(2px, 2px);
+}
+}
+
+/* Phone input custom styles */
+.phone-input-custom {
+  width: 100%;
+}
+
+.phone-input-custom .react-international-phone-input-container {
+  width: 100%;
+}
+
+.phone-input-custom .react-international-phone-input {
+  height: 3rem;
+  font-size: 1.125rem;
+  width: 100%;
+  border-radius: var(--radius);
+  border: 4px solid hsl(var(--input));
+  background-color: hsl(var(--background));
+  padding: 0.5rem 0.75rem;
+  font-weight: 700;
+}
+
+.phone-input-custom .react-international-phone-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(var(--ring));
+}
+
+.phone-input-custom .react-international-phone-country-selector-button {
+  height: 3rem;
+  border-radius: var(--radius);
+  border: 4px solid hsl(var(--input));
+  background-color: hsl(var(--background));
+  padding: 0.5rem;
+  font-weight: 700;
+}
+
+.phone-input-custom .react-international-phone-country-selector-button:hover {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+.phone-input-custom .react-international-phone-country-selector-dropdown {
+  background-color: hsl(var(--popover));
+  border: 4px solid hsl(var(--border));
+  border-radius: var(--radius);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 50;
+}
+
+.phone-input-custom .react-international-phone-country-selector-dropdown__list-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.phone-input-custom .react-international-phone-country-selector-dropdown__list-item:hover {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+/* Ajuste de phone input para mobile */
+@media (max-width: 640px) {
+  .phone-input-custom .react-international-phone-input {
+    height: 3.5rem;
+    font-size: 1rem;
+  }
+
+  .phone-input-custom .react-international-phone-country-selector-button {
+    height: 3.5rem;
+  }
+}
+
+/* Ajuste de scrollbar para mobile */
+@media (max-width: 768px) {
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 4px;
+  }
+}
+
+/* CHAMPIONS STYLE - Urgency Animation */
+@keyframes urgency-shake {
+  0%, 100% { 
+    transform: translateX(0) scale(1); 
+  }
+  25% { 
+    transform: translateX(-4px) scale(1.02); 
+  }
+  75% { 
+    transform: translateX(4px) scale(1.02); 
+  }
+}
+
+/* Teenage Engineering Color Palette */
+:root {
+  --te-orange: 25 100% 50%; /* #FF6600 in HSL */
+  --te-gray-light: 0 0% 96%; /* #F5F5F5 */
+  --te-gray-medium: 0 0% 88%; /* #E0E0E0 */
+  --te-gray-dark: 0 0% 81%; /* #D0D0D0 */
+}
+
+/* Brutalist Typography - Base */
+.font-brutalist {
+  font-family: 'Bebas Neue', 'Arial Narrow', 'Impact', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: 0em;
+}
+
+/* Brutalist Typography - Hero (180px+) - Espaçamento expandido para legibilidade */
+.font-brutalist-hero {
+  font-family: 'Bebas Neue', 'Arial Narrow', 'Impact', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+}
+
+/* Brutalist Typography - Large (60px - 180px) - Espaçamento neutro */
+.font-brutalist-large {
+  font-family: 'Bebas Neue', 'Arial Narrow', 'Impact', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: 0em;
+}
+
+/* Brutalist Typography - Medium (24px - 60px) - Levemente comprimido */
+.font-brutalist-medium {
+  font-family: 'Bebas Neue', 'Arial Narrow', 'Impact', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+/* Chevron Pattern */
+.chevron-left {
+  width: 0;
+  height: 0;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-right: 20px solid currentColor;
+}
+
+.chevron-right {
+  width: 0;
+  height: 0;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 20px solid currentColor;
+}
+
+/* Clean animations */
+@keyframes fade-in-subtle {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-subtle {
+  animation: fade-in-subtle 0.4s ease-out;
+}
+
+.timer-urgent {
+  animation: urgency-shake 0.5s ease-in-out infinite;
+}

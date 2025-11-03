@@ -1,0 +1,62 @@
+project_id = "ioaqszmayxuqbdmzdpkx"
+
+[functions.add-user-to-event]
+verify_jwt = true
+
+[functions.get-admin-acquisition]
+verify_jwt = true
+
+[functions.delete-own-account]
+verify_jwt = true
+
+[functions.categorize-idea]
+verify_jwt = true
+
+[functions.generate-prd]
+verify_jwt = true
+request_policies = [
+  { type = "per_second", per_second = 1 },
+  { type = "per_minute", per_minute = 10 }
+]
+
+[functions.generate-realtime-token]
+verify_jwt = true
+
+[functions.send-whatsapp-otp]
+verify_jwt = false
+
+[functions.verify-whatsapp-otp]
+verify_jwt = false
+
+[functions.manage-user-role]
+verify_jwt = true
+
+[functions.send-document-email]
+verify_jwt = true
+
+[functions.test-hotmart-auth]
+verify_jwt = false
+
+[functions.validate-hotmart-access]
+verify_jwt = true
+
+[functions.toggle-prd-like]
+verify_jwt = true
+
+[functions.send-notification]
+verify_jwt = true
+
+[functions.extract-prd-metadata]
+verify_jwt = true
+
+[functions.migrate-prd-titles]
+verify_jwt = true
+
+[functions.get-admin-dashboard-data]
+verify_jwt = true
+
+[functions.sync-profiles]
+verify_jwt = true
+
+[functions.recategorize-all-prds]
+verify_jwt = false
